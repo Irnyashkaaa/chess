@@ -1,23 +1,26 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
+import { BoardComponent } from './components/BoardComponent.tsx';
+import { Board } from './models/Board.ts'
 
 function App() {
+
+  const [board, setBoard] = useState(new Board())
+
+  useEffect(() => {
+      restart()
+  }, [])
+  
+  const restart = () => {
+      const newBoard = new Board()
+      newBoard.initCells()
+      newBoard.addFigures()
+      setBoard(newBoard)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BoardComponent board={board} setBoard={setBoard}/>
     </div>
   );
 }
