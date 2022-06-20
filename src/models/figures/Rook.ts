@@ -14,4 +14,11 @@ export class Rook extends Figure {
         this.logo = (color === colorsEnum.BLACK)? blackLogo: whiteLogo
         this.name = firugeNames.ROOK
     }
+
+    isCanMove(target: Cell): boolean {
+        if (!super.isCanMove(target)) return false
+        if (this.cell.isEmptyVertical(target)) return true
+        if (this.cell.isEmptyHorizontal(target)) return true
+        return false
+    }
 }

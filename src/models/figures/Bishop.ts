@@ -9,4 +9,10 @@ export class Bishop extends Figure {
         this.logo = color === colorsEnum.BLACK? blackLogo: whiteLogo
         this.name = firugeNames.BISHOP
     }
+
+    isCanMove(target: Cell): boolean {
+        if (!super.isCanMove(target)) return false;
+        if (this.cell.isEmptyDiagonal(target)) return true
+        return false
+    }
 }

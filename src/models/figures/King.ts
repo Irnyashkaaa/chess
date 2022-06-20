@@ -14,4 +14,11 @@ export class King extends Figure {
         this.logo = (color === colorsEnum.BLACK)? blackLogo: whiteLogo
         this.name = firugeNames.KING
     }
+
+    isCanMove(target: Cell): boolean {
+        if (!super.isCanMove(target)) return false
+        const dx = Math.abs(this.cell.x - target.x)
+        const dy = Math.abs(this.cell.y - target.y)
+        return dx === 1 && dy === 1 || dy === -1 && dy === -1 || dy === 1 && target.x === this.cell.x || dx == 1 && target.y === this.cell.y
+    }
 }
